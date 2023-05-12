@@ -28,7 +28,7 @@ def has_correct_version(
 
     # fallback to copyright date check
     if result is not None:
-        version_str = result.group(0)
+        version_str = result[0]
 
         # remove all non numeric characters from string example: n4.3
         version_str = re.sub(r"[a-zA-Z]", "", version_str)
@@ -115,11 +115,7 @@ async def convert(
 
     proc_out = await process.communicate()
 
-    if proc_out[0] or proc_out[1]:
-        out = str(b"".join(proc_out))
-    else:
-        out = ""
-
+    out = str(b"".join(proc_out)) if proc_out[0] or proc_out[1] else ""
     if process.returncode != 0:
         message = (
             f"ffmpeg returned an error ({process.returncode})"

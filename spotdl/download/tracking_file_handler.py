@@ -82,7 +82,7 @@ class DownloadTracker:
 
             song_name = format_name(song_name)
 
-            self.save_file = Path(song_name + ".spotdlTrackingFile")
+            self.save_file = Path(f"{song_name}.spotdlTrackingFile")
 
         # save encoded string to a file
         with open(self.save_file, "wb") as file_handle:

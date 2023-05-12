@@ -266,7 +266,7 @@ class _ProgressTracker:
         `tb` : traceback
         Freezes the progress bar and prints the traceback received
         """
-        self.update(message="Error " + self.status)
+        self.update(message=f"Error {self.status}")
 
         message = (
             f"Error: {e}\tWhile {self.status}: {self.song_object.display_name}\n {tb}"

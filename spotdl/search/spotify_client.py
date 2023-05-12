@@ -12,13 +12,13 @@ class Singleton(type):
 
     _instance = None
 
-    def __call__(cls):
-        if cls._instance is None:
+    def __call__(self):
+        if self._instance is None:
             raise Exception(
                 "Spotify client not created. Call SpotifyClient.init"
                 "(client_id, client_secret, user_auth) first."
             )
-        return cls._instance
+        return self._instance
 
     def init(cls, client_id: str, client_secret: str, user_auth: bool) -> "Singleton":
         """

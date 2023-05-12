@@ -143,10 +143,7 @@ class SongObject:
 
         images = self._raw_track_meta["album"]["images"]
 
-        if len(images) > 0:
-            return images[0]["url"]
-
-        return None
+        return images[0]["url"] if len(images) > 0 else None
 
     @property
     def playlist_name(self) -> Optional[str]:
@@ -154,10 +151,7 @@ class SongObject:
         returns name of the playlist that the song belongs to.
         """
 
-        if self._playlist is None:
-            return None
-
-        return self._playlist["name"]
+        return None if self._playlist is None else self._playlist["name"]
 
     @property
     def data_dump(self) -> dict:
@@ -202,8 +196,8 @@ class SongObject:
         # ! (Mastubs REMIX).mp3' which is kinda an odd file name.
         for artist in song_artists[1:]:
             if artist.lower() not in song_name.lower():
-                artist_string += ", " + artist
+                artist_string += f", {artist}"
 
-        converted_file_name = artist_string + " - " + song_name
+        converted_file_name = f"{artist_string} - {song_name}"
 
         return format_name(converted_file_name)

@@ -232,7 +232,7 @@ def from_album(
         if result[0] is not None and result[0].youtube_link is not None:
             tracks.append(result[0])
 
-    if album_response and generate_m3u is True:
+    if album_response and generate_m3u:
         album_data = spotify_client.album(album_url)
 
         if album_data is not None:
@@ -352,7 +352,7 @@ def from_playlist(
         if result[0] is not None and result[0].youtube_link is not None:
             tracks.append(result[0])
 
-    if playlist_response and generate_m3u is True:
+    if playlist_response and generate_m3u:
         playlist_data = spotify_client.playlist(playlist_url)
 
         if playlist_data is not None:

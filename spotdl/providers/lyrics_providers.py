@@ -19,7 +19,7 @@ def get_lyrics_genius(song_name: str, song_artists: List[str]) -> str:
     headers = {
         "Authorization": "Bearer alXXDbPZtK1m2RrZ8I4k2Hn8Ahsd0Gh_o076HYvcdlBvmc0ULL1H8Z8xRlew5qaG",
     }
-    headers.update(user_agent)
+    headers |= user_agent
 
     api_search_url = "https://api.genius.com/search"
     artist_str = ", ".join(
@@ -100,9 +100,7 @@ def get_lyrics_musixmatch(
         if track_search:
             return ""
 
-        lyrics = get_lyrics_musixmatch(song_name, song_artists, track_search=True)
-        return lyrics
-
+        return get_lyrics_musixmatch(song_name, song_artists, track_search=True)
     song_url = "https://www.musixmatch.com" + str(song_url_tag.get("href", ""))
     lyrics_resp = get(song_url, headers=user_agent)
     if not lyrics_resp.ok:
@@ -110,6 +108,4 @@ def get_lyrics_musixmatch(
 
     lyrics_soup = BeautifulSoup(lyrics_resp.text, "html.parser")
     lyrics_paragraphs = lyrics_soup.select("p.mxm-lyrics__content")
-    lyrics = "\n".join(i.get_text() for i in lyrics_paragraphs)
-
-    return lyrics
+    return "\n".join(i.get_text() for i in lyrics_paragraphs)

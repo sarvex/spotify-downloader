@@ -124,7 +124,7 @@ def parse_request(
             output_format, use_youtube, lyrics_provider, threads
         )
     else:
-        print('Searching Spotify for song named "%s"...' % request)
+        print(f'Searching Spotify for song named "{request}"...')
         try:
             song_list = song_gatherer.from_search_term(
                 request, output_format, use_youtube, lyrics_provider

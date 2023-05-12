@@ -150,9 +150,8 @@ def _parse_path_template(path_template, song_object, output_format, short=False)
 
     santitized_parts = []
     for part in converted_file_path.parts:
-        match = re.search(r"[^\.*](.*)[^\.*$]", part)
-        if match:
-            santitized_parts.append(match.group(0))
+        if match := re.search(r"[^\.*](.*)[^\.*$]", part):
+            santitized_parts.append(match[0])
         else:
             santitized_parts.append(part)
 
